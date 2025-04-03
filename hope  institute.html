@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Institute - Computer & Language Courses in Tando Allahyar</title>
+    <style>
+        :root {
+            --primary: #4267B2; /* Facebook blue */
+            --secondary: #FF0000; /* YouTube red */
+            --accent: #50C878;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --whatsapp: #25D366;
+            --contact: #4285F4;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .location {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        .admissions-banner {
+            background-color: var(--accent);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: var(--whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: whatsapp-pulse 1.5s infinite;
+        }
+        
+        .contact-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 120px;
+            right: 40px;
+            background-color: var(--contact);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: contact-pulse 1.5s infinite;
+        }
+        
+        @keyframes whatsapp-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes contact-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .whatsapp-float:hover, .contact-float:hover {
+            animation: none;
+            transform: scale(1.1);
+        }
+        
+        .float-text {
+            position: absolute;
+            right: 70px;
+            width: max-content;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .whatsapp-float:hover .float-text,
+        .contact-float:hover .float-text {
+            opacity: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .courses-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .course-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 2rem;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        .discount-ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            z-index: 1;
+            transform: rotate(5deg);
+        }
+        
+        .price-container {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        .discounted-price {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .why-choose-us {
+            background-color: var(--light);
+            padding: 3rem 0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .testimonials {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial {
+            min-width: 300px;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .course-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .course-card {
+                width: 80%;
+            }
+            
+            .whatsapp-float, .contact-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+            
+            .contact-float {
+                bottom: 90px;
+            }
+            
+            .float-text {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923332831340" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="float-text">Chat on WhatsApp</span>
+    </a>
+
+    <!-- Contact Us Float Button -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScQTgHLPQjoUTCLts4GQBXKnIwiU9fwzgmRLTPSORAg6tG9gA/viewform?usp=header" class="contact-float" target="_blank">
+        <i class="fas fa-envelope"></i>
+        <span class="float-text">Contact Us Form</span>
+    </a>
+
+    <header>
+        <div class="container">
+            <div class="logo">HOPE INSTITUTE</div>
+            <div class="location">TANDO ALLAHYAR (H.I.T)</div>
+            <div class="tagline">Build Your Skills, Build Your Future</div>
+        </div>
+    </header>
+    
+    <div class="admissions-banner">
+        ADMISSIONS ARE OPEN! LIMITED SEATS AVAILABLE - 50% OFF ON ALL COURSES
+    </div>
+    
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <p>Practical, result-oriented learning to help you succeed in the digital world</p>
+            
+            <div class="course-cards">
+                <div class="course-card">
+                    <div class="discount-ribbon">50% OFF</div>
+                    <h3>Computer Courses</h3>
+                    <p>From basic computer literacy to advanced programming and software development</p>
+                    <div class="price-container">
+                        <div class="original-price">Original Price: Rs. 1800</div>
+                        <div class="discounted-price">Discounted Price: Rs. 900</div>
+                    </div>
+                    <p><strong>Duration:</strong> 1-6 months</p>
+                    <p><strong>Special Offer:</strong> Limited time 50% discount</p>
+                </div>
+                
+                <div class="course-card">
+                    <div class="discount-ribbon">50% OFF</div>
+                    <h3>English Language Classes</h3>
+                    <p>Improve your English communication skills for academic and professional success</p>
+                    <div class="price-container">
+                        <div class="original-price">Original Price: Rs. 1000</div>
+                        <div class="discounted-price">Discounted Price: Rs. 500</div>
+                    </div>
+                    <p><strong>Duration:</strong> 1-3 months</p>
+                    <p><strong>Special Offer:</strong> Limited time 50% discount</p>
+                </div>
+                
+                <div class="course-card">
+                    <div class="discount-ribbon">50% OFF</div>
+                    <h3>Freelancing & Digital Skills</h3>
+                    <p>Learn how to start your freelancing career and master essential digital skills</p>
+                    <div class="price-container">
+                        <div class="original-price">Original Price: Rs. 1000</div>
+                        <div class="discounted-price">Discounted Price: Rs. 500</div>
+                    </div>
+                    <p><strong>Duration:</strong> 1 month short courses</p>
+                    <p><strong>Special Offer:</strong> Limited time 50% discount</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-choose-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose Hope Institute?</h2>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Dedicated & Experienced Teachers</h3>
+                    <p>Our instructors are highly qualified and passionate about helping students succeed.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Individual Attention</h3>
+                    <p>Small batch sizes ensure personalized attention for every student.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Modern Facilities</h3>
+                    <p>High-speed Wi-Fi and up-to-date technology for effective learning.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Practical Learning</h3>
+                    <p>Focus on hands-on, practical skills that prepare you for real-world challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonial-section">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"The computer course at Hope Institute completely changed my career prospects. The teachers are amazing!"</p>
+                    <p><strong>- Ali R.</strong></p>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"I improved my English significantly in just 2 months. The small class size really helps."</p>
+                    <p><strong>- Sana K.</strong></p>
+                </div>
+                
+                <div class="testimonial">
+                    <p>"Thanks to the freelancing course, I started earning online while still studying."</p>
+                    <p><strong>- Usman T.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> Izhar Sahito: 0333-2831340</p>
+                        <p><i class="fas fa-phone"></i> Tabish Kamboh: 0327-2208404</p>
+                        <p><i class="fas fa-envelope"></i> hopeinstitudetandoallahyar@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Address</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Opposite Madarsa Siddique Akber, Main Bukera Road, Tando Allahyar, Sindh, Pakistan</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Hope Institute. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
